@@ -5,7 +5,7 @@ config_roots = ["packages/*"]
 
 [tools]
 hk = "latest" # Git hooks
-biome = "latest" # formatter and linter
+biome = "2.5.1" # formatter and linter; pinned to the schema version biome.json targets, bumped by the update bot
 
 [settings]
 # Install node from .node-version
