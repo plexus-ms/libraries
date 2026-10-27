@@ -1,43 +1,22 @@
-name: Release
+name: release
+
+# Mounts verify and release on a push to the trunk (§§ 2 and 5 PLX-Delivery):
+# verify first, then changesets versions and publishes, token-less through
+# OIDC trusted publishing with provenance.
 
 on:
   push:
     branches: [main]
 
-concurrency: release
-
 permissions:
-  contents: write       # push the version PR / tags
-  pull-requests: write  # open the "version packages" PR
-  id-token: write       # npm build provenance (drop this line if the repo is private)
+  contents: write
+  pull-requests: write
+  id-token: write
 
 jobs:
+  verify:
+    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.64.0
+
   release:
-    runs-on: ubuntu-latest
-    # `mise install` runs the postinstall hook, which runs `hk install --mise` and
-    # points core.hooksPath at hk — so hk's hooks fire on the commits and pushes
-    # changesets/action makes. That is wrong here in both directions: pre-push
-    # cannot resolve the tag objects `changeset publish` pushes (it looks for a
-    # merge base against origin/main and the tag is not a commit, which is what
-    # failed the release), and re-running lint/check/test in the release job only
-    # repeats what CI already ran on the pull request.
-    env:
-      HK_SKIP_HOOK: pre-commit,pre-push
-    steps:
-      - uses: actions/checkout@v7
-      - uses: jdx/mise-action@v4   # node from .node-version; pnpm via corepack (packageManager field)
-      - run: pnpm install --frozen-lockfile
-      # Build every package in dependency order before publishing: `changeset
-      # publish` runs the packages' `prepack` hooks alphabetically, so a package
-      # bundling a workspace sibling (cli over lib) would otherwise find no dist.
-      - run: pnpm exec turbo run build
-      # On a push with pending changesets -> opens/updates a "version packages" PR.
-      # On a push where that PR was merged (no changesets left) -> publishes.
-      - uses: changesets/action@v1
-        with:
-          version: pnpm exec changeset version
-          publish: pnpm exec changeset publish
-          commit: "chore: version packages"
-          title: "Version Packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    needs: verify
+    uses: plexus-ms/ci-cd/.github/workflows/_release-package.yml@0.64.0
