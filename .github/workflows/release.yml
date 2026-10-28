@@ -15,8 +15,8 @@ permissions:
 
 jobs:
   verify:
-    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.64.0
+    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.66.0
 
   release:
     needs: verify
-    uses: plexus-ms/ci-cd/.github/workflows/_release-package.yml@0.64.0
+    uses: plexus-ms/ci-cd/.github/workflows/_release-package.yml@0.66.0
