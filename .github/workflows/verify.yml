@@ -22,8 +22,10 @@ jobs:
     # The Version Packages branch is *built by* `changeset version`, which
     # consumes the changeset files it releases — there "changed packages, no
     # changesets" is the expected state. On main itself there is nothing
-    # since main.
-    if: ${{ !startsWith(github.ref_name, 'changeset-release/') && github.ref_name != 'main' }}
+    # since main. The update bot writes no changesets, so its branches are
+    # exempt: a bump that changes what a published package ships is given its
+    # changeset by the human who merges it.
+    if: ${{ !startsWith(github.ref_name, 'changeset-release/') && !startsWith(github.ref_name, 'renovate/') && github.ref_name != 'main' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
