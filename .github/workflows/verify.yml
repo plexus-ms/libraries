@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   verify:
-    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.68.0
+    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.69.0
 
   changeset-status:
     # The Version Packages branch is *built by* `changeset version`, which
@@ -43,12 +43,17 @@ jobs:
   changeset:
     # The update bot writes no changesets: the verb writes the one its bump
     # owes and commits it to the bot's branch; the preset ignores that author,
-    # so the bot keeps rebasing. The token is a fine-grained PAT with contents
-    # write, so that the push runs this workflow on the new tip (a push with
-    # the workflow token starts no run, and the ruleset would block the merge).
+    # so the bot keeps rebasing. The push is made with a token minted for the
+    # org's own GitHub App (contents write on this repo), so that it runs this
+    # workflow on the new tip: a push with the workflow token starts no run,
+    # and the ruleset would block the merge. The PAT is the fallback until the
+    # app's id and key are set, and goes once they are.
     if: ${{ startsWith(github.head_ref, 'renovate/') }}
-    uses: plexus-ms/ci-cd/.github/workflows/_changeset.yml@0.68.0
+    uses: plexus-ms/ci-cd/.github/workflows/_changeset.yml@0.69.0
     permissions:
       contents: write
+    with:
+      app_id: ${{ vars.CHANGESET_APP_ID }}
     secrets:
+      app_private_key: ${{ secrets.CHANGESET_APP_PRIVATE_KEY }}
       token: ${{ secrets.CHANGESET_PUSH_TOKEN }}
