@@ -30,7 +30,7 @@ importers:
   packages/cli:
     devDependencies:
       '@inquirer/prompts':
-        specifier: ^8.0.0
+        specifier: ^8.7.4
         version: 8.7.4(@types/node@26.6.5)
       '@plexus-ms/lib':
         specifier: workspace:*
