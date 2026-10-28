@@ -1,5 +1,11 @@
 # @plexus-ms/std
 
+## 0.2.1
+
+### Patch Changes
+
+- 4e08223: Update `tailwind-merge` from ^3.0.0 to ^3.7.0
+
 ## 0.2.0
 
 ### Minor Changes
