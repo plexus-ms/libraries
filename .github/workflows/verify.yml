@@ -1,11 +1,14 @@
 name: verify
 
-# Mounts the verify verb on every push (§ 2 PLX-Delivery), plus the changeset
-# guard: a publishable change ships with a changeset, or an empty one that
-# records a no-release change (`changeset add --empty`).
+# Mounts the verify verb on every pull request (§ 2 PLX-Delivery): main admits
+# nothing but pull requests, so this is every commit before it lands, tested as
+# the merge result. A push trigger would never fire for the "version packages"
+# PR, whose branch the release job pushes with the workflow token. Plus the
+# changeset guard: a publishable change ships with a changeset, or an empty
+# one that records a no-release change (`changeset add --empty`).
 
 on:
-  push:
+  pull_request:
 
 permissions:
   contents: read
@@ -25,7 +28,7 @@ jobs:
     # since main. The update bot writes no changesets, so its branches are
     # exempt: a bump that changes what a published package ships is given its
     # changeset by the human who merges it.
-    if: ${{ !startsWith(github.ref_name, 'changeset-release/') && !startsWith(github.ref_name, 'renovate/') && github.ref_name != 'main' }}
+    if: ${{ !startsWith(github.head_ref, 'changeset-release/') && !startsWith(github.head_ref, 'renovate/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
