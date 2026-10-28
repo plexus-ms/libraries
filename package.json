@@ -4,7 +4,7 @@
   "packageManager": "pnpm@11.9.0",
   "devDependencies": {
     "@biomejs/biome": "2.6.3",
-    "@changesets/cli": "^2.31.1",
+    "@changesets/cli": "^3.0.3",
     "@plexus-ms/config": "workspace:*",
     "turbo": "^2.11.10"
   }
