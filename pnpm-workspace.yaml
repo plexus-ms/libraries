@@ -1,7 +1,7 @@
 packages:
   - "packages/*"
 catalog:
-  typescript: ^6.0.3
+  typescript: ^7.0.2
 allowBuilds:
   esbuild: true
 # A third-party release is installable three days after it is published (§ 2 PLX-Updates);
