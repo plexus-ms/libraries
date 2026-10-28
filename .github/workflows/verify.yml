@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   verify:
-    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.70.1
+    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.72.0
 
   changeset-status:
     # The Version Packages branch is *built by* `changeset version`, which
@@ -49,7 +49,7 @@ jobs:
     # and the ruleset would block the merge. The PAT is the fallback until the
     # app's id and key are set, and goes once they are.
     if: ${{ startsWith(github.head_ref, 'renovate/') }}
-    uses: plexus-ms/ci-cd/.github/workflows/_changeset.yml@0.70.1
+    uses: plexus-ms/ci-cd/.github/workflows/_changeset.yml@0.72.0
     permissions:
       contents: write
     with:
