@@ -5,7 +5,8 @@ name: verify
 # the merge result. A push trigger would never fire for the "version packages"
 # PR, whose branch the release job pushes with the workflow token. Plus the
 # changeset guard: a publishable change ships with a changeset, or an empty
-# one that records a no-release change (`changeset add --empty`).
+# one that records a no-release change (`changeset add --empty`). The update
+# bot's branches get theirs written by `plx changeset` instead.
 
 on:
   pull_request:
@@ -19,15 +20,16 @@ concurrency:
 
 jobs:
   verify:
-    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.66.0
+    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.68.0
 
   changeset-status:
     # The Version Packages branch is *built by* `changeset version`, which
     # consumes the changeset files it releases — there "changed packages, no
     # changesets" is the expected state. On main itself there is nothing
-    # since main. The update bot writes no changesets, so its branches are
-    # exempt: a bump that changes what a published package ships is given its
-    # changeset by the human who merges it.
+    # since main. The update bot's branches are exempt because the guard
+    # counts any file under a package directory: a devDependency bump trips
+    # it and owes no release. The changeset job below writes the one a
+    # runtime bump owes.
     if: ${{ !startsWith(github.head_ref, 'changeset-release/') && !startsWith(github.head_ref, 'renovate/') }}
     runs-on: ubuntu-latest
     steps:
@@ -37,3 +39,16 @@ jobs:
       - uses: jdx/mise-action@v4
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec changeset status --since=origin/main
+
+  changeset:
+    # The update bot writes no changesets: the verb writes the one its bump
+    # owes and commits it to the bot's branch; the preset ignores that author,
+    # so the bot keeps rebasing. The token is a fine-grained PAT with contents
+    # write, so that the push runs this workflow on the new tip (a push with
+    # the workflow token starts no run, and the ruleset would block the merge).
+    if: ${{ startsWith(github.head_ref, 'renovate/') }}
+    uses: plexus-ms/ci-cd/.github/workflows/_changeset.yml@0.68.0
+    permissions:
+      contents: write
+    secrets:
+      token: ${{ secrets.CHANGESET_PUSH_TOKEN }}

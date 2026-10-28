@@ -5,6 +5,11 @@ config_roots = ["packages/*"]
 
 [tools]
 hk = "latest" # Git hooks
+# plx: the changeset a dependency bump owes (§ 5 PLX-Delivery), run by the
+# verify workflow on the update bot's branches. The repo's own package, taken
+# published rather than from the checkout so that the bot's branch runs
+# released code; the trust-policy approval only waives npm's young-package heuristics.
+"npm:@plexus-ms/cli" = { version = "0.4.0", allow_low_downloads = true }
 
 [settings]
 # Install node from .node-version
