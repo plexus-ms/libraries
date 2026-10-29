@@ -9,7 +9,7 @@ hk = "latest" # Git hooks
 # verify workflow on the update bot's branches. The repo's own package, taken
 # published rather than from the checkout so that the bot's branch runs
 # released code; the trust-policy approval only waives npm's young-package heuristics.
-"npm:@plexus-ms/cli" = { version = "0.8.1", allow_low_downloads = true }
+"npm:@plexus-ms/cli" = { version = "0.9.0", allow_low_downloads = true }
 
 [settings]
 # Install node from .node-version
