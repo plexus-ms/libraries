@@ -1,0 +1,6 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 0.76.0
+_src_path: gh:plexus-ms/preset-repo-web
+publishes_packages: true
+renovate_reviewers: davidjalbers
+tenant: plexus-ms
