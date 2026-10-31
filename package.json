@@ -5,7 +5,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.6.3",
     "@changesets/cli": "^3.0.3",
-    "@plexus-ms/config": "^0.3.1",
+    "@plexus-ms/config": "0.100.0",
     "turbo": "^2.11.10"
   }
 }

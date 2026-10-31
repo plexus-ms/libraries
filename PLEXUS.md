@@ -1,5 +1,5 @@
 ---
-plexus: 0.69.0
+plexus: 0.100.0
 modules: [PLX-Repo, PLX-JS, PLX-Delivery, PLX-Updates]
 ---
 
