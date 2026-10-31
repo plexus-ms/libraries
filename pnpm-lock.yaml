@@ -192,6 +192,10 @@ catalogs:
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
+  plexus:
+    '@plexus-ms/config':
+      specifier: 0.100.0
+      version: 0.100.0
 
 importers:
 
@@ -204,7 +208,7 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       '@plexus-ms/config':
-        specifier: 0.100.0
+        specifier: catalog:plexus
         version: 0.100.0
       turbo:
         specifier: ^2.11.10
