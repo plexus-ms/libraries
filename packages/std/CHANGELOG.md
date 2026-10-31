@@ -1,5 +1,11 @@
 # @plexus-ms/std
 
+## 0.2.2
+
+### Patch Changes
+
+- c600772: The package is published from `plexus-ms/libraries`, the repository formerly named `packages`; its manifest names the new home, which provenance checks.
+
 ## 0.2.1
 
 ### Patch Changes
