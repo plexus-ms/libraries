@@ -1,14 +1,5 @@
 name: verify
 
-<<<<<<< before updating
-# Mounts the verify verb on every pull request (§ 2 PLX-Delivery): main admits
-# nothing but pull requests, so this is every commit before it lands, tested as
-# the merge result. A push trigger would never fire for the "version packages"
-# PR, whose branch the release job pushes with the workflow token. Plus the
-# changeset guard: a publishable change ships with a changeset, or an empty
-# one that records a no-release change (`changeset add --empty`). The update
-# bot's branches get theirs written by `plx changeset` instead.
-=======
 # Mounts the verify verb on every push (§ 2 PLX-Delivery): is the repo sound?
 # One repo-wide job; the per-app gate before a release is deploy.yml's own.
 # Managed by copier: edit the preset (plexus-ms/preset-repo-web), never this file.
@@ -20,7 +11,6 @@ name: verify
 # with a changeset, or an empty one that records a no-release change
 # (`changeset add --empty`); the update bot's branches get theirs written by
 # `plx changeset` instead.
->>>>>>> after updating
 
 on:
   pull_request:
@@ -34,34 +24,20 @@ concurrency:
 
 jobs:
   verify:
-<<<<<<< before updating
-    uses: plexus-ms/ci-cd/.github/workflows/_verify.yml@0.76.0
-=======
     uses: plexus-ms/primitives/.github/workflows/_verify.yml@0.100.0
     with:
       runner: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
       persistent: ${{ vars.CI_RUNNER_PERSISTENT == 'true' }}
->>>>>>> after updating
 
   changeset-status:
     # The Version Packages branch is *built by* `changeset version`, which
     # consumes the changeset files it releases — there "changed packages, no
-<<<<<<< before updating
-    # changesets" is the expected state. On main itself there is nothing
-    # since main. The update bot's branches are exempt because the guard
-    # counts any file under a package directory: a devDependency bump trips
-    # it and owes no release. The changeset job below writes the one a
-    # runtime bump owes.
-    if: ${{ !startsWith(github.head_ref, 'changeset-release/') && !startsWith(github.head_ref, 'renovate/') }}
-    runs-on: ubuntu-latest
-=======
     # changesets" is the expected state. The update bot's branches are exempt
     # because the guard counts any file under a package directory: a
     # devDependency bump trips it and owes no release; the changeset job below
     # writes the one a runtime bump owes.
     if: ${{ !startsWith(github.head_ref, 'changeset-release/') && !startsWith(github.head_ref, 'renovate/') }}
     runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
->>>>>>> after updating
     steps:
       - uses: actions/checkout@v7
         with:
@@ -72,35 +48,18 @@ jobs:
 
   changeset:
     # The update bot writes no changesets: the verb writes the one its bump
-<<<<<<< before updating
-    # owes and commits it to the bot's branch; the preset ignores that author,
-    # so the bot keeps rebasing. The push is made with a token minted for the
-    # org's own GitHub App (contents write on this repo), so that it runs this
-    # workflow on the new tip: a push with the workflow token starts no run,
-    # and the ruleset would block the merge. The PAT is the fallback until the
-    # app's id and key are set, and goes once they are.
-    if: ${{ startsWith(github.head_ref, 'renovate/') }}
-    uses: plexus-ms/ci-cd/.github/workflows/_changeset.yml@0.76.0
-=======
     # owes and commits it to the bot's branch, pushed with a token minted for
     # the tenant's own GitHub App (contents write on this repo; repo variable
     # CHANGESET_APP_ID, secret CHANGESET_APP_PRIVATE_KEY) so that the new tip
     # runs this workflow; a push with the workflow token starts no run.
     if: ${{ startsWith(github.head_ref, 'renovate/') }}
     uses: plexus-ms/primitives/.github/workflows/_changeset.yml@0.100.0
->>>>>>> after updating
     permissions:
       contents: write
     with:
       app_id: ${{ vars.CHANGESET_APP_ID }}
-<<<<<<< before updating
-    secrets:
-      app_private_key: ${{ secrets.CHANGESET_APP_PRIVATE_KEY }}
-      token: ${{ secrets.CHANGESET_PUSH_TOKEN }}
-=======
       runner: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
       persistent: ${{ vars.CI_RUNNER_PERSISTENT == 'true' }}
     secrets:
       app_private_key: ${{ secrets.CHANGESET_APP_PRIVATE_KEY }}
 
->>>>>>> after updating

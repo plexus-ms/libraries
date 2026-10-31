@@ -1,9 +1,5 @@
 ---
-<<<<<<< before updating
-plexus: 0.69.0
-=======
 plexus: 0.100.0
->>>>>>> after updating
 modules: [PLX-Repo, PLX-JS, PLX-Delivery, PLX-Updates]
 ---
 

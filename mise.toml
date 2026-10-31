@@ -5,13 +5,6 @@ config_roots = ["packages/*"]
 
 [tools]
 hk = "latest" # Git hooks
-<<<<<<< before updating
-# plx: the changeset a dependency bump owes (§ 5 PLX-Delivery), run by the
-# verify workflow on the update bot's branches. The repo's own package, taken
-# published rather than from the checkout so that the bot's branch runs
-# released code; the trust-policy approval only waives npm's young-package heuristics.
-"npm:@plexus-ms/cli" = { version = "0.10.0", allow_low_downloads = true }
-=======
 uv = "latest" # required for copier
 copier = { version = "latest", uvx = true } # template management
 # plx: the ops verbs the reusable workflows mount — changed-apps, deploy-targets, deploy
@@ -20,7 +13,6 @@ copier = { version = "latest", uvx = true } # template management
 # the update bot (§ 1 PLX-Updates); the trust-policy approval only waives
 # npm's young-package heuristics.
 "npm:@plexus-ms/cli" = { version = "0.100.0", allow_low_downloads = true }
->>>>>>> after updating
 
 [settings]
 # Install node from .node-version
