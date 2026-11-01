@@ -1,8 +1,8 @@
 name: verify
 
-# Mounts the verify verb on every push (§ 2 PLX-Delivery): is the repo sound?
-# One repo-wide job; the per-app gate before a release is deploy.yml's own.
-# Managed by copier: edit the preset (plexus-ms/preset-repo-web), never this file.
+# Mounts the verify verb on every pull request (§ 2 PLX-Delivery): is the
+# repo sound? Managed by copier: edit the preset (plexus-ms/preset-repo-web),
+# never this file.
 #
 # A package repo's trunk admits nothing but pull requests, so this runs on
 # every pull request, tested as the merge result; a push trigger would never
@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   verify:
-    uses: plexus-ms/primitives/.github/workflows/_verify.yml@0.102.0
+    uses: plexus-ms/primitives/.github/workflows/_verify.yml@0.103.0
     with:
       runner: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
       persistent: ${{ vars.CI_RUNNER_PERSISTENT == 'true' }}
@@ -53,7 +53,7 @@ jobs:
     # PLX_APP_ID, secret PLX_APP_PRIVATE_KEY) so that the new tip
     # runs this workflow; a push with the workflow token starts no run.
     if: ${{ startsWith(github.head_ref, 'renovate/') }}
-    uses: plexus-ms/primitives/.github/workflows/_changeset.yml@0.102.0
+    uses: plexus-ms/primitives/.github/workflows/_changeset.yml@0.103.0
     permissions:
       contents: write
     with:
