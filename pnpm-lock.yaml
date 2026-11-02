@@ -423,8 +423,8 @@ packages:
       picomatch:
         optional: true
 
-  human-id@4.2.0:
-    resolution: {integrity: sha512-K3GbkIWqyvvlpfhBPlbEvD97TtqBpAYA4kt+cn2lD2x2HuohzZCibcA2nOlnJT6exqvJLggoB5nv2dNf192nEA==}
+  human-id@4.2.2:
+    resolution: {integrity: sha512-Z+8unD6em/MJwyrkWQ2M3wygRGI1+MztbutiNwk1DCuEPXOZRWGjtcMPZYP1exY9iNZMhd7ZOSMQSo9WYtiQRw==}
     hasBin: true
 
   import-meta-resolve@4.2.0:
@@ -636,7 +636,7 @@ snapshots:
     dependencies:
       '@changesets/format': 0.1.3
       '@changesets/types': 7.0.0
-      human-id: 4.2.0
+      human-id: 4.2.2
 
   '@clack/core@1.5.1':
     dependencies:
@@ -709,7 +709,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.7
 
-  human-id@4.2.0: {}
+  human-id@4.2.2: {}
 
   import-meta-resolve@4.2.0: {}
 
