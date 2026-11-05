@@ -1,9 +1,6 @@
 {
-<<<<<<< before updating
-=======
   "$schema": "https://turborepo.com/schema.json",
-  "globalDependencies": [".node-version"],
->>>>>>> after updating
+  "globalDependencies": ["mise.toml"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -13,16 +10,12 @@
       "dependsOn": ["^build"]
     },
     "test": {
-<<<<<<< before updating
-      "dependsOn": ["^build"]
-=======
       "dependsOn": ["build"],
       "passThroughEnv": ["CI", "DATABASE_URL", "E2E_*", "PLAYWRIGHT_*", "PW_TEST_*"]
     },
     "dev": {
       "cache": false,
       "persistent": true
->>>>>>> after updating
     }
   }
 }
