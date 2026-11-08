@@ -169,8 +169,8 @@ catalogs:
       version: 6.0.3
   plexus:
     '@plexus-ms/config':
-      specifier: 0.110.0
-      version: 0.110.0
+      specifier: 0.111.0
+      version: 0.111.0
 
 importers:
 
@@ -184,7 +184,7 @@ importers:
         version: 3.0.3
       '@plexus-ms/config':
         specifier: catalog:plexus
-        version: 0.110.0
+        version: 0.111.0
       turbo:
         specifier: ^2.11.10
         version: 2.11.10
@@ -357,8 +357,8 @@ packages:
     resolution: {integrity: sha512-6QEf6yqFbETdwGITKq57aYoPfX/3K8XFNwsAlx0C1M7o8cb79sv1M3w+tWuWvIcSbNqrLF7OD7YpZMVVz335hQ==}
     engines: {node: '>=20.0.0'}
 
-  '@plexus-ms/config@0.110.0':
-    resolution: {integrity: sha512-VLwZFg/00uDBD/YVjRtN9lE8t26LQik0EVCbhUCSSQWMurRwSKX4HYcOf3U3VP5K5cUmUSg6eNXdqidSF6nRog==}
+  '@plexus-ms/config@0.111.0':
+    resolution: {integrity: sha512-h1dcQNCj4wxzu0Y1bh8htUgRHWkhMosj/XAVPbuiuirC5ZVuu5Jcm/JKfagpFNxf/X/Gh9Opkl2AVghXNOYU8w==}
 
   '@pnpm/deps.graph-sequencer@1100.0.1':
     resolution: {integrity: sha512-pOr5+q1fLYKwFN3LAJuGZEnfXDcQ73zqgDHMtGy+K+uIoUqyY+6MeDCWFwfu+4EFuq76I5EPFofoNAI+Bmmq4A==}
@@ -665,7 +665,7 @@ snapshots:
       tinyglobby: 0.2.17
       yaml: 2.9.1
 
-  '@plexus-ms/config@0.110.0': {}
+  '@plexus-ms/config@0.111.0': {}
 
   '@pnpm/deps.graph-sequencer@1100.0.1': {}
 
