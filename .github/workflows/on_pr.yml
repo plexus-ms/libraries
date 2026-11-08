@@ -29,7 +29,7 @@ concurrency:
 
 jobs:
   check:
-    uses: plexus-ms/primitives/.github/workflows/_check.yml@0.111.0
+    uses: plexus-ms/primitives/.github/workflows/_check.yml@0.112.0
     with:
       strategy: ${{ vars.CI_STRATEGY || 'github' }}
       tasks: verify
@@ -58,7 +58,7 @@ jobs:
     # PLX_APP_ID, secret PLX_APP_PRIVATE_KEY) so that the new tip
     # runs this workflow; a push with the workflow token starts no run.
     if: ${{ startsWith(github.head_ref, 'renovate/') }}
-    uses: plexus-ms/primitives/.github/workflows/_changeset.yml@0.111.0
+    uses: plexus-ms/primitives/.github/workflows/_changeset.yml@0.112.0
     permissions:
       contents: write
     with:
