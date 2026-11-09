@@ -36,10 +36,7 @@ _.path = ["{{config_root}}/node_modules/.bin"]
 # Contract verbs
 
 [tasks.verify]
-depends = ["lint", "check", "test"]
 description = "Perform all steps that verify code quality"
-<<<<<<< before updating
-=======
 # The one verb the pipeline mounts (§ 1 PLX-Delivery) — it knows this name and
 # no other. An optional scope forwards to check/test so a pipeline leg can
 # path-scope to one app plus its dependency packages (§ 3 PLX-Delivery); lint
@@ -60,7 +57,6 @@ run = [
 [tasks.sync]
 description = "Update the project to the latest template version with Copier"
 run = "copier update --trust"
->>>>>>> after updating
 
 # Internal / hidden tasks
 
