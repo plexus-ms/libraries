@@ -13,7 +13,7 @@ copier = { version = "latest", uvx = true } # template management
 # plexus-ms/primitives at the train number and pinned by the train, never by
 # the update bot (§ 1 PLX-Updates); the trust-policy approval only waives
 # npm's young-package heuristics.
-"npm:@plexus-ms/cli" = { version = "0.113.0", allow_low_downloads = true }
+"npm:@plexus-ms/cli" = { version = "0.114.0", allow_low_downloads = true }
 
 [settings]
 # Not a version source: node is pinned in [tools]. It makes package.json one of
@@ -38,6 +38,29 @@ _.path = ["{{config_root}}/node_modules/.bin"]
 [tasks.verify]
 depends = ["lint", "check", "test"]
 description = "Perform all steps that verify code quality"
+<<<<<<< before updating
+=======
+# The one verb the pipeline mounts (§ 1 PLX-Delivery) — it knows this name and
+# no other. An optional scope forwards to check/test so a pipeline leg can
+# path-scope to one app plus its dependency packages (§ 3 PLX-Delivery); lint
+# stays cheap and repo-wide. lint, check and test are the sub-verbs of § 3
+# PLX-Repo: lint on pre-commit, check on pre-push, test here.
+usage = 'arg "[scope]" help="App or package to verify (e.g. apps/my-app, defaults to all)"'
+run = [
+    'mise run lint',
+    'mise run check ${usage_scope:+"$usage_scope"}',
+    'mise run test ${usage_scope:+"$usage_scope"}',
+]
+
+# The ops side — playbooks, inventory, secrets pointers — is not here: it lives
+# in the tenant's operations repo (§ 3 PLX-Tenancy), generated from plexus-ms/preset-repo-operations.
+
+# Propagation tasks
+
+[tasks.sync]
+description = "Update the project to the latest template version with Copier"
+run = "copier update --trust"
+>>>>>>> after updating
 
 # Internal / hidden tasks
 
