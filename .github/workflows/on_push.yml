@@ -21,13 +21,13 @@ permissions:
 
 jobs:
   check:
-    uses: plexus-ms/primitives/.github/workflows/_check.yml@0.114.0
+    uses: plexus-ms/primitives/.github/workflows/_check.yml@0.116.0
     with:
       strategy: ${{ vars.CI_STRATEGY || 'github' }}
       tasks: verify
 
   publish:
     needs: check
-    uses: plexus-ms/primitives/.github/workflows/_publish-package.yml@0.114.0
+    uses: plexus-ms/primitives/.github/workflows/_publish-package.yml@0.116.0
     with:
       strategy: ${{ vars.CI_STRATEGY || 'github' }}
