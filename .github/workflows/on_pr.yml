@@ -2,7 +2,7 @@ name: on_pr
 
 # A pull request asks "is the repo sound" (§ 2 PLX-Delivery), tested as the
 # merge result: `check`, which for a package repo is the whole contract verb.
-# Managed by copier: edit the preset (plexus-ms/preset-repo-web), never this
+# Managed by copier: edit the preset (plexus-ms/preset-repo-turbo), never this
 # file.
 #
 # A package repo's trunk admits nothing but pull requests, so this runs on
@@ -29,7 +29,7 @@ concurrency:
 
 jobs:
   check:
-    uses: plexus-ms/primitives/.github/workflows/_check.yml@0.113.0
+    uses: plexus-ms/primitives/.github/workflows/_check.yml@0.114.0
     with:
       strategy: ${{ vars.CI_STRATEGY || 'github' }}
       tasks: verify
@@ -58,7 +58,7 @@ jobs:
     # PLX_APP_ID, secret PLX_APP_PRIVATE_KEY) so that the new tip
     # runs this workflow; a push with the workflow token starts no run.
     if: ${{ startsWith(github.head_ref, 'renovate/') }}
-    uses: plexus-ms/primitives/.github/workflows/_changeset.yml@0.113.0
+    uses: plexus-ms/primitives/.github/workflows/_changeset.yml@0.114.0
     permissions:
       contents: write
     with:
