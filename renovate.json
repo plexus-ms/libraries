@@ -1,5 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>plexus-ms/primitives//renovate/default"],
+  "extends": ["github>plexus-ms/primitives//renovate/default", "github>plexus-ms/primitives//renovate/library"],
   "reviewers": ["davidjalbers"]
 }
