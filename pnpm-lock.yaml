@@ -167,10 +167,6 @@ catalogs:
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
-  plexus:
-    '@plexus-ms/config':
-      specifier: 0.119.0
-      version: 0.119.0
 
 importers:
 
@@ -183,11 +179,13 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       '@plexus-ms/config':
-        specifier: catalog:plexus
-        version: 0.119.0
+        specifier: workspace:*
+        version: link:packages/config
       turbo:
         specifier: ^2.11.10
         version: 2.11.10
+
+  packages/config: {}
 
   packages/std:
     dependencies:
@@ -356,9 +354,6 @@ packages:
   '@manypkg/tools@2.1.2':
     resolution: {integrity: sha512-6QEf6yqFbETdwGITKq57aYoPfX/3K8XFNwsAlx0C1M7o8cb79sv1M3w+tWuWvIcSbNqrLF7OD7YpZMVVz335hQ==}
     engines: {node: '>=20.0.0'}
-
-  '@plexus-ms/config@0.119.0':
-    resolution: {integrity: sha512-oZ/+gj7ra+TbU2IK7Q5qMPiBz5Pp/HlIhbM3e+E5fJ5nEZABh+sVwLX2cbz/rfcAyYYfEdf3RItDeDI5pYhOUQ==}
 
   '@pnpm/deps.graph-sequencer@1100.0.1':
     resolution: {integrity: sha512-pOr5+q1fLYKwFN3LAJuGZEnfXDcQ73zqgDHMtGy+K+uIoUqyY+6MeDCWFwfu+4EFuq76I5EPFofoNAI+Bmmq4A==}
@@ -664,8 +659,6 @@ snapshots:
       jju: 1.4.0
       tinyglobby: 0.2.17
       yaml: 2.9.1
-
-  '@plexus-ms/config@0.119.0': {}
 
   '@pnpm/deps.graph-sequencer@1100.0.1': {}
 
