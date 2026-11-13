@@ -3,12 +3,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-<<<<<<< before updating
-      "outputs": ["dist/**"]
-=======
       "inputs": ["$TURBO_DEFAULT$", "!**/{README,AGENTS,PLEXUS}.md", "!.copier-answers.yml", "!docs/**", "!docker/compose*.yaml"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
->>>>>>> after updating
+      "outputs": ["dist/**"]
     },
     "check": {
       "dependsOn": ["^build"],
