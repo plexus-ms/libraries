@@ -10,11 +10,7 @@
         "!docs/**",
         "!docker/compose*.yaml"
       ],
-<<<<<<< before updating
       "outputs": ["dist/**"]
-=======
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
->>>>>>> after updating
     },
     "check": {
       "dependsOn": ["^build"],
