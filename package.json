@@ -1,11 +1,11 @@
 {
   "name": "libraries",
   "private": true,
-  "packageManager": "pnpm@12.16.1",
+  "packageManager": "pnpm@12.20.0",
   "devDependencies": {
-    "@biomejs/biome": "2.6.6",
+    "@biomejs/biome": "2.6.7",
     "@changesets/cli": "^3.0.3",
     "@plexus-ms/config": "workspace:*",
-    "turbo": "^2.11.10"
+    "turbo": "^2.11.11"
   }
 }
