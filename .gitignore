@@ -1,7 +1,16 @@
-# deps
 node_modules
+<<<<<<< before updating
 
 # misc
+||||||| last update
+
+# turbo
+.turbo
+
+# misc
+=======
+.turbo
+>>>>>>> after updating
 .DS_Store
 *.pem
 
