@@ -1,6 +1,4 @@
 ---
-plexus: 0.121.0
-modules: [PLX-Repo, PLX-JS, PLX-Delivery, PLX-Updates]
 ---
 
 - The `@plexus-ms/*` libraries: tenant-neutral methodology for the web/Node/TypeScript world on its own semver, versioned by changesets and published through trusted publishing (§ 5 PLX-Delivery); `plx` and `@plexus-ms/lib` live in `tooling` and carry the Plexus version (§ 1.5 PLX).
