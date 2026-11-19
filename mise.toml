@@ -27,23 +27,6 @@ postinstall = "if command -v hk >/dev/null; then hk install --mise; fi && npx co
 [env]
 _.path = ["{{config_root}}/node_modules/.bin"]
 
-<<<<<<< before updating
-
-# Contract verbs (§ 3 PLX-Repo)
-||||||| last update
-
-[tasks.promote]
-description = "Promote staging to prod: fast-forward main to what is on develop (§ 3 PLX-Delivery); refused unless it is a fast-forward"
-run = 'git fetch -q origin && git push origin origin/develop:refs/heads/main'
-
-# Contract verbs (§ 3 PLX-Repo)
-
-=======
-[tasks.promote]
-description = "Promote staging to prod: fast-forward main to what is on develop (§ 3 PLX-Delivery); refused unless it is a fast-forward"
-run = 'git fetch -q origin && git push origin origin/develop:refs/heads/main'
->>>>>>> after updating
-
 [tasks.dev]
 description = "No-op: a package repo has no development environment to start; build builds its packages and test exercises them"
 run = 'echo "dev: nothing to start in a package repo"'
@@ -80,19 +63,9 @@ run = "biome check ${usage_write:+--write} --no-errors-on-unmatched $usage_paths
 
 [tasks.check]
 depends = ["install"]
-<<<<<<< before updating
-description = "Run static checks on the codebase: lint, repo-wide, then each project's check script"
-usage = 'arg "[package]" help="Package to check (defaults to all)"'
-run = ['mise run lint', 'turbo run check ${usage_package:+--filter=$usage_package}']
-||||||| last update
-description = "Run static checks on the codebase: lint, repo-wide, then each project's check script"
-usage = 'arg "[package]" help="App or package to check (e.g. apps/my-app, defaults to all)"'
-run = ['mise run lint', 'turbo run check ${usage_package:+--filter=./$usage_package}']
-=======
 description = "Run static checks on the codebase: lint and the contracts' checks (plx doctor), repo-wide, then each project's check script"
-usage = 'arg "[package]" help="App or package to check (e.g. apps/my-app, defaults to all)"'
-run = ['mise run lint', 'plx doctor', 'turbo run check ${usage_package:+--filter=./$usage_package}']
->>>>>>> after updating
+usage = 'arg "[package]" help="Package to check (defaults to all)"'
+run = ['mise run lint', 'plx doctor', 'turbo run check ${usage_package:+--filter=$usage_package}']
 
 [tasks.test]
 depends = ["install"]
