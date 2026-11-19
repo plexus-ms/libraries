@@ -1,21 +1,7 @@
 name: on_pr
 
-# A pull request asks "is the repo sound" (§ 2 PLX-Delivery), tested as the
-# merge result: `check`, which for a package repo is the whole contract verb.
-# Managed by copier: edit the template (plexus-ms/template-repo-turbo), never this
-# file.
-#
-# A package repo's trunk admits nothing but pull requests, so this runs on
-# every pull request; a push trigger would never fire for the "version
-# packages" PR, whose branch the publish job pushes with the workflow token.
-# Plus the changeset guard: a publishable change ships with a changeset, or
-# an empty one that records a no-release change (`changeset add --empty`);
-# the update bot's branches get theirs written by `plx changeset` instead.
-#
-# Where the jobs run is this repo's answer `ci_strategy` (§ 8 PLX-Delivery):
-# github. The repo variable CI_STRATEGY overrides it without a commit;
-# `github` there is the way back to the forge's runners while a runner host
-# is down.
+# Generated from plexus-ms/template-repo-turbo: edit the template, never this file.
+# A package repo's pull-request mount, check and the changeset guard (§ 5 PLX-Delivery).
 
 on:
   pull_request:
@@ -29,18 +15,14 @@ concurrency:
 
 jobs:
   check:
-    uses: plexus-ms/tooling/.github/workflows/_check.yml@0.123.0
+    uses: plexus-ms/tooling/.github/workflows/_check.yml@0.124.0
     with:
       strategy: ${{ vars.CI_STRATEGY || 'github' }}
       tasks: verify
 
   changeset-status:
-    # The Version Packages branch is *built by* `changeset version`, which
-    # consumes the changeset files it releases — there "changed packages, no
-    # changesets" is the expected state. The update bot's branches are exempt
-    # because the guard counts any file under a package directory: a
-    # devDependency bump trips it and owes no release; the changeset job below
-    # writes the one a runtime bump owes.
+    # `changeset version` consumed the release branch's changesets, and the bot's branches get theirs from the
+    # changeset job: the guard counts any file under a package, so a devDependency bump would trip it.
     if: ${{ !startsWith(github.head_ref, 'changeset-release/') && !startsWith(github.head_ref, 'renovate/') }}
     runs-on: ${{ (vars.CI_STRATEGY || 'github') == 'github' && 'ubuntu-latest' || 'ci-small' }}
     steps:
@@ -52,14 +34,8 @@ jobs:
       - run: pnpm exec changeset status --since=origin/main
 
   changeset:
-    # The update bot writes no changesets: the verb writes the one its bump
-    # owes and commits it to the bot's branch, pushed as the tenant's GitHub
-    # App (the variable GH_CLIENT_ID and the secret GH_PRIVATE_KEY, or the
-    # item github-app in the CI vault, read with OP_SERVICE_ACCOUNT_TOKEN) so
-    # that the new tip runs this workflow; a push with the workflow token
-    # starts no run.
     if: ${{ startsWith(github.head_ref, 'renovate/') }}
-    uses: plexus-ms/tooling/.github/workflows/_changeset.yml@0.123.0
+    uses: plexus-ms/tooling/.github/workflows/_changeset.yml@0.124.0
     with:
       gh-client-id: ${{ vars.GH_CLIENT_ID }}
       strategy: ${{ vars.CI_STRATEGY || 'github' }}
