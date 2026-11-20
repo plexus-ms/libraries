@@ -1,9 +1,14 @@
 node_modules
 .DS_Store
 *.pem
+<<<<<<< before updating
 
 # build
 dist
 
 # turbo
 .turbo
+||||||| last update
+=======
+dist
+>>>>>>> after updating
