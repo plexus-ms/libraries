@@ -1,9 +1,11 @@
 # Maintained by Copier — NEVER EDIT MANUALLY.
-_commit: 0.124.0
+_commit: 0.128.0
 _src_path: gh:plexus-ms/template-repo-turbo
 ci_strategy: github
+package_registry: npm
+pr_reviewers: davidjalbers
+private_packages_scope: ''
 publishes_packages: true
-renovate_reviewers: davidjalbers
 tenant: plexus-ms
 update_max_age: 7
 
