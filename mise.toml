@@ -73,13 +73,6 @@ run = "biome check ${usage_write:+--write} --no-errors-on-unmatched $usage_paths
 [tasks.check]
 depends = ["install"]
 description = "Run static checks on the codebase: lint and the contracts' checks (plx doctor), repo-wide, then each project's check script"
-<<<<<<< before updating
-usage = 'arg "[package]" help="Package to check (defaults to all)"'
-run = ['mise run lint', 'plx doctor', 'turbo run check ${usage_package:+--filter=$usage_package}']
-||||||| last update
-usage = 'arg "[package]" help="App or package to check (e.g. apps/my-app, defaults to all)"'
-run = ['mise run lint', 'plx doctor', 'turbo run check ${usage_package:+--filter=./$usage_package}']
-=======
 usage = 'arg "[name]" help="Package to check, by its directory name under packages/ (e.g. my-package, defaults to all)"'
 run = '''
 dir=
@@ -94,18 +87,10 @@ mise run lint
 plx doctor
 turbo run check ${dir:+--filter="{./$dir}..."}
 '''
->>>>>>> after updating
 
 [tasks.test]
 depends = ["install"]
 description = "Run tests on the codebase"
-<<<<<<< before updating
-usage = 'arg "[package]" help="Package to test (defaults to all)"'
-run = 'turbo run test ${usage_package:+--filter=$usage_package}'
-||||||| last update
-usage = 'arg "[package]" help="App or package to test (e.g. apps/my-app, defaults to all)"'
-run = 'turbo run test ${usage_package:+--filter=./$usage_package}'
-=======
 usage = 'arg "[name]" help="Package to test, by its directory name under packages/ (e.g. my-package, defaults to all)"'
 run = '''
 dir=
@@ -118,4 +103,3 @@ if [ -n "${usage_name:-}" ]; then
 fi
 turbo run test ${dir:+--filter="{./$dir}..."}
 '''
->>>>>>> after updating
