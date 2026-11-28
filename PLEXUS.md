@@ -1,4 +1,13 @@
 ---
+version: 0.131.0
+templates: [repo-turbo]
+ci_strategy: github
+package_registry: npm
+pr_reviewers: davidjalbers
+private_packages_scope: ''
+publishes_packages: true
+tenant: plexus-ms
+update_max_age: 7
 ---
 
 - The `@plexus-ms/*` libraries: tenant-neutral methodology for the web/Node/TypeScript world on its own semver, versioned by changesets and published through trusted publishing (§ 5 PLX-Delivery); `plx` and `@plexus-ms/lib` live in `tooling` and carry the Plexus version (§ 1.5 PLX).
